@@ -151,7 +151,7 @@ export const SongSelectorModal = ({
         </div>
 
         {/* Filters */}
-        <div className="p-4 border-b bg-gray-50 overflow-y-auto max-h-48">
+        <div className="p-4 border-b bg-gray-50 overflow-y-auto max-h-48 min-h-36">
           <div className="mb-3">
             <h3 className="text-sm font-semibold mb-2">ユニット / Unit</h3>
             <div className="flex flex-wrap gap-2">

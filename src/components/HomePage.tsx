@@ -13,6 +13,7 @@ export const HomePage = () => {
   const { cells, initializeBingo, isBingoComplete } = useBingoStore();
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
 
   useEffect(() => {
     const loadBingoCard = async () => {
@@ -78,11 +79,31 @@ export const HomePage = () => {
       return;
     }
 
+    setIsExporting(true);
+
     try {
+      const exportArea = document.getElementById("bingo-export-area");
+      if (exportArea) {
+        const images = exportArea.querySelectorAll("img");
+        await Promise.all(
+          Array.from(images).map((img) => {
+            if (img.complete) return Promise.resolve();
+            return new Promise((resolve, reject) => {
+              img.onload = resolve;
+              img.onerror = reject;
+            });
+          })
+        );
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
       await exportBingoToImage("bingo-export-area");
     } catch (error) {
       console.error("Error exporting:", error);
       alert("エクスポートに失敗しました / Export failed");
+    } finally {
+      setIsExporting(false);
     }
   };
 
@@ -126,10 +147,14 @@ export const HomePage = () => {
 
         <div
           id="bingo-export-area"
-          className="bg-white p-8 rounded-2xl shadow-lg mb-6"
+          className="p-8 rounded-2xl shadow-lg mb-6"
+          style={{
+            backgroundColor: "#ffffff",
+            color: "#000000",
+          }}
         >
           <div className="mb-4 text-center">
-            <h3 className="text-xl font-bold text-liella-pink mb-1">
+            <h3 className="text-xl font-bold mb-1" style={{ color: "#FF69B4" }}>
               Liella! 7th Live Setlist Bingo
             </h3>
             <p className="text-sm text-gray-600">
@@ -158,10 +183,13 @@ export const HomePage = () => {
 
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-liella-blue text-liella-blue hover:bg-liella-blue hover:text-white rounded-lg font-semibold transition transform hover:scale-105"
+            disabled={isExporting}
+            className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-liella-blue text-liella-blue hover:bg-liella-blue hover:text-white rounded-lg font-semibold transition transform hover:scale-105 disabled:opacity-50"
           >
             <Download size={20} />
-            画像保存 / Export Image
+            {isExporting
+              ? "エクスポート中... / Exporting..."
+              : "画像保存 / Export Image"}
           </button>
         </div>
 

@@ -1,4 +1,4 @@
-import html2canvas from "html2canvas";
+import { domToPng } from "modern-screenshot";
 
 export const exportBingoToImage = async (elementId: string): Promise<void> => {
   const element = document.getElementById(elementId);
@@ -6,16 +6,19 @@ export const exportBingoToImage = async (elementId: string): Promise<void> => {
     throw new Error("Element not found");
   }
 
-  const canvas = await html2canvas(element, {
-    backgroundColor: "#ffffff",
-    scale: 2,
-    logging: false,
-  });
+  try {
+    const dataUrl = await domToPng(element, {
+      quality: 1,
+      scale: 3,
+      backgroundColor: "#ffffff",
+      style: {
+        imageRendering: "-webkit-optimize-contrast",
+        transform: "translateZ(0)",
+      },
+    });
 
-  canvas.toBlob((blob) => {
-    if (!blob) {
-      throw new Error("Failed to create blob");
-    }
+    const response = await fetch(dataUrl);
+    const blob = await response.blob();
 
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -24,5 +27,8 @@ export const exportBingoToImage = async (elementId: string): Promise<void> => {
     link.click();
 
     URL.revokeObjectURL(url);
-  }, "image/png");
+  } catch (error) {
+    console.error("Export error:", error);
+    throw error;
+  }
 };

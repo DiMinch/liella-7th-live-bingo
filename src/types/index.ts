@@ -1,6 +1,6 @@
 export type Unit =
   | "Liella!"
-  | "CatChu"
+  | "CatChu!"
   | "KALEIDOSCORE"
   | "5yncri5e!"
   | "Gen1"
@@ -17,6 +17,7 @@ export interface Song {
     romaji: string;
   };
   coverUrl: string;
+  originalCoverUrl: string | null;
   releaseYear: number;
   units: Unit[];
   members: Member[];
