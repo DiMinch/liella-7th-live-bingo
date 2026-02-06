@@ -1,4 +1,4 @@
-import { domToPng } from "modern-screenshot";
+import * as htmlToImage from "html-to-image";
 
 export const exportBingoToImage = async (elementId: string): Promise<void> => {
   const element = document.getElementById(elementId);
@@ -7,18 +7,20 @@ export const exportBingoToImage = async (elementId: string): Promise<void> => {
   }
 
   try {
-    const dataUrl = await domToPng(element, {
+    const blob = await htmlToImage.toBlob(element, {
       quality: 1,
-      scale: 3,
+      pixelRatio: 3,
       backgroundColor: "#ffffff",
+      cacheBust: true,
       style: {
-        imageRendering: "-webkit-optimize-contrast",
-        transform: "translateZ(0)",
+        margin: "0",
+        padding: "0",
       },
     });
 
-    const response = await fetch(dataUrl);
-    const blob = await response.blob();
+    if (!blob) {
+      throw new Error("Failed to create blob");
+    }
 
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
