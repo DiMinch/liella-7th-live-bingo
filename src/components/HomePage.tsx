@@ -108,13 +108,13 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-purple-50 to-blue-50">
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Sparkles className="text-liella-pink" size={32} />
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-liella-pink to-liella-purple bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-linear-to-r from-liella-pink to-liella-purple bg-clip-text text-transparent">
                 Liella! 7th Live Bingo
               </h1>
               <p className="text-sm text-gray-600">セットリスト予想ビンゴ</p>
@@ -123,7 +123,7 @@ export const HomePage = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/results"
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-lg hover:shadow-lg transition text-sm font-semibold"
+              className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-yellow-400 to-orange-400 text-white rounded-lg hover:shadow-lg transition text-sm font-semibold"
             >
               <Trophy size={16} />
               <span className="hidden md:inline">結果 / Results</span>
@@ -172,7 +172,7 @@ export const HomePage = () => {
               flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition
               ${
                 user && !isSaving
-                  ? "bg-gradient-to-r from-liella-pink to-liella-purple text-white hover:shadow-lg transform hover:scale-105"
+                  ? "bg-linear-to-r from-liella-pink to-liella-purple text-white hover:shadow-lg transform hover:scale-105"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }
             `}

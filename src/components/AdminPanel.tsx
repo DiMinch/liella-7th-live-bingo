@@ -46,6 +46,12 @@ export const AdminPanel = () => {
           <p className="text-sm text-gray-500 mt-4">
             This page is only accessible to administrators
           </p>
+          <button
+            onClick={() => window.location.replace("/")}
+            className="mt-6 px-4 py-2 bg-liella-pink text-white rounded-lg hover:bg-liella-purple transition"
+          >
+            Return
+          </button>
         </div>
       </div>
     );
@@ -109,7 +115,7 @@ export const AdminPanel = () => {
               onClick={() => setSelectedDay(1)}
               className={`px-6 py-3 rounded-lg font-semibold transition ${
                 selectedDay === 1
-                  ? "bg-gradient-to-r from-liella-pink to-liella-purple text-white"
+                  ? "bg-linear-to-r from-liella-pink to-liella-purple text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
             >
@@ -119,7 +125,7 @@ export const AdminPanel = () => {
               onClick={() => setSelectedDay(2)}
               className={`px-6 py-3 rounded-lg font-semibold transition ${
                 selectedDay === 2
-                  ? "bg-gradient-to-r from-liella-pink to-liella-purple text-white"
+                  ? "bg-linear-to-r from-liella-pink to-liella-purple text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
             >
@@ -141,7 +147,7 @@ export const AdminPanel = () => {
                     performed ? "bg-green-50" : ""
                   }`}
                 >
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     {performed ? (
                       <CheckCircle2 className="text-green-600" size={24} />
                     ) : (
@@ -152,7 +158,7 @@ export const AdminPanel = () => {
                   <img
                     src={song.coverUrl}
                     alt={song.title.jp}
-                    className="w-16 h-16 object-cover rounded flex-shrink-0"
+                    className="w-16 h-16 object-cover rounded shrink-0"
                   />
 
                   <div className="flex-1 text-left min-w-0">
@@ -167,7 +173,7 @@ export const AdminPanel = () => {
                     </div>
                   </div>
 
-                  <div className="text-sm text-gray-500 flex-shrink-0">
+                  <div className="text-sm text-gray-500 shrink-0">
                     {performed ? "Performed ✓" : "Not performed"}
                   </div>
                 </button>

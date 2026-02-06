@@ -126,7 +126,7 @@ export const SongSelectorModal = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-4 border-b flex items-center justify-between bg-gradient-to-r from-liella-pink to-liella-purple text-white">
+        <div className="p-4 border-b flex items-center justify-between bg-linear-to-r from-liella-pink to-liella-purple text-white">
           <h2 className="text-xl font-bold">楽曲を選択 / Select Song</h2>
           <button onClick={onClose} className="p-1 hover:bg-red-500 rounded">
             <X size={24} />
@@ -254,7 +254,7 @@ export const SongSelectorModal = ({
                   <img
                     src={song.coverUrl}
                     alt={song.title.jp}
-                    className="w-16 h-16 object-cover rounded flex-shrink-0"
+                    className="w-16 h-16 object-cover rounded shrink-0"
                   />
                   <div className="flex-1 min-w-0">
                     <div className="font-semibold text-sm truncate">

@@ -51,7 +51,7 @@ export const BingoGrid = () => {
                 transition-all duration-200 relative group
                 ${
                   cell.isFreeSpace
-                    ? "bg-gradient-to-br from-liella-pink to-liella-purple border-liella-pink"
+                    ? "bg-linear-to-br from-liella-pink to-liella-purple border-liella-pink"
                     : song
                     ? "border-liella-blue hover:border-liella-pink hover:scale-105"
                     : "border-gray-300 hover:border-liella-pink hover:bg-gray-50"
@@ -73,7 +73,7 @@ export const BingoGrid = () => {
                     alt={song.title.jp}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-70"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-2">
                     <div className="text-white text-xs font-semibold leading-tight line-clamp-2">
                       {song.title.jp}

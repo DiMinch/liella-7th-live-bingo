@@ -39,7 +39,7 @@ export const ResultsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-liella-pink border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p>Loading results...</p>
@@ -50,13 +50,19 @@ export const ResultsPage = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-linear-to-br from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md">
           <h2 className="text-2xl font-bold mb-4">ログインが必要です</h2>
           <p className="text-gray-600 mb-4">
             結果を見るにはログインしてください
           </p>
           <p className="text-sm text-gray-500">Please login to view results</p>
+          <button
+            onClick={() => window.location.replace("/")}
+            className="mt-6 px-4 py-2 bg-liella-pink text-white rounded-lg hover:bg-liella-purple transition"
+          >
+            Return
+          </button>
         </div>
       </div>
     );
@@ -64,7 +70,7 @@ export const ResultsPage = () => {
 
   if (!bingoCard) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-linear-to-br from-pink-50 via-purple-50 to-blue-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md">
           <h2 className="text-2xl font-bold mb-4">
             ビンゴカードが見つかりません
@@ -77,7 +83,7 @@ export const ResultsPage = () => {
           </p>
           <a
             href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-liella-pink to-liella-purple text-white rounded-lg hover:shadow-lg transition"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-liella-pink to-liella-purple text-white rounded-lg hover:shadow-lg transition"
           >
             <Home size={20} />
             ホームへ / Go Home
@@ -106,7 +112,7 @@ export const ResultsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-purple-50 to-blue-50">
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -133,19 +139,19 @@ export const ResultsPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
-            <div className="text-center p-4 bg-gradient-to-br from-liella-pink to-liella-purple rounded-lg text-white">
+            <div className="text-center p-4 bg-linear-to-br from-liella-pink to-liella-purple rounded-lg text-white">
               <div className="text-4xl font-bold">{matchedCount}</div>
               <div className="text-sm mt-1">的中 / Matched</div>
               <div className="text-xs mt-1 opacity-80">out of {totalCells}</div>
             </div>
 
-            <div className="text-center p-4 bg-gradient-to-br from-liella-blue to-liella-purple rounded-lg text-white">
+            <div className="text-center p-4 bg-linear-to-br from-liella-blue to-liella-purple rounded-lg text-white">
               <div className="text-4xl font-bold">{bingoLines}</div>
               <div className="text-sm mt-1">ビンゴライン / Bingo Lines</div>
               <div className="text-xs mt-1 opacity-80">completed</div>
             </div>
 
-            <div className="text-center p-4 bg-gradient-to-br from-liella-purple to-liella-pink rounded-lg text-white">
+            <div className="text-center p-4 bg-linear-to-br from-liella-purple to-liella-pink rounded-lg text-white">
               <div className="text-4xl font-bold">
                 {Math.round((matchedCount / totalCells) * 100)}%
               </div>
@@ -172,7 +178,7 @@ export const ResultsPage = () => {
                     aspect-square border-2 rounded-lg overflow-hidden relative
                     ${
                       cell.isFreeSpace
-                        ? "bg-gradient-to-br from-liella-pink to-liella-purple border-liella-pink"
+                        ? "bg-linear-to-br from-liella-pink to-liella-purple border-liella-pink"
                         : matched
                         ? "border-green-500 bg-green-50"
                         : "border-gray-300"
@@ -196,7 +202,7 @@ export const ResultsPage = () => {
                           matched ? "opacity-100" : "opacity-50 grayscale"
                         }`}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-70"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-2">
                         <div className="text-white text-xs font-semibold leading-tight line-clamp-2">
                           {song.title.jp}
@@ -235,7 +241,7 @@ export const ResultsPage = () => {
         </div>
 
         {bingoLines > 0 && (
-          <div className="mt-8 bg-gradient-to-r from-yellow-400 to-orange-400 p-6 rounded-lg text-white text-center">
+          <div className="mt-8 bg-linear-to-r from-yellow-400 to-orange-400 p-6 rounded-lg text-white text-center">
             <h3 className="text-2xl font-bold mb-2">
               🎉 おめでとうございます！/ Congratulations! 🎉
             </h3>
